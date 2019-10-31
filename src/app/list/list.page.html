@@ -4,24 +4,42 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      List
+      Jugadores
     </ion-title>
+    <ion-buttons slot="end" (click)="handleCreateUser()" *ngIf="listUser">
+      <ion-icon name="person-add"></ion-icon>
+    </ion-buttons>
+    <ion-buttons slot="end" (click)="handleListUser()" *ngIf="createUser">
+        <ion-icon name="list"></ion-icon>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="listUser">
   <ion-list>
-    <ion-item *ngFor="let item of items">
-      <ion-icon [name]="item.icon" slot="start"></ion-icon>
-      {{item.title}}
+    <ion-item *ngFor="let player of players">
+      {{player.nombre}}
       <div class="item-note" slot="end">
-        {{item.note}}
+        No. {{player.numero}}
       </div>
+      <ion-button color="primary" expand="full" (click)="handleDeleteUser(player.codigo)">Borrar</ion-button>
+      <ion-button color="primary" expand="full" (click)="handleUpdateUser(player.codigo)">Actualizar</ion-button>
     </ion-item>
   </ion-list>
-  <!--
-    <div *ngIf="selectedItem" padding>
-      You navigated here from <b>{{selectedItem.title }}</b>
-    </div>
-  -->
+</ion-content>
+
+<ion-content *ngIf="createUser">
+    <ion-grid>
+        <ion-row>
+            <ion-col size="6">
+                <ion-input color="medium"  [(ngModel)]="name"></ion-input>
+            </ion-col>
+            <ion-col size="6">
+                <ion-input color="medium"  [(ngModel)]="numberPlayer"></ion-input>
+            </ion-col>
+            <ion-col size="6">
+                <ion-button color="primary" expand="full" (click)="handleGetPositions()">Posicion</ion-button>
+            </ion-col>
+        </ion-row>
+      </ion-grid>
 </ion-content>
