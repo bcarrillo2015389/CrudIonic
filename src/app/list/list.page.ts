@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+
 // Services 
 import { JugadoresService } from '../jugadores.service';
 
@@ -14,6 +15,11 @@ import { AlertController } from '@ionic/angular';
 export class ListPage implements OnInit {
   players;
   jugador;
+  equipos;
+  posiciones;
+  objEquipo;
+  objPosicion;
+
   name:string;
   equipo:string;
   numero:string;
@@ -27,6 +33,7 @@ export class ListPage implements OnInit {
   listUser:boolean = true;
   createUser:boolean = false;
   updateUser:boolean = false;
+  choice:boolean = false;
 
   constructor(private _playersService: JugadoresService, public alertController: AlertController) {}
 
@@ -34,15 +41,30 @@ export class ListPage implements OnInit {
     this.getPlayers();
   }
 
+  setEquipo(){
+    this.equipo = this.objEquipo.codigo;
+  }
+
+  setPosicion(posicion:string){
+    this.posicion=this.objPosicion.codigo;
+  }
+
   handleCreateUser(){
     this.listUser = false;
-    this.createUser = true;
     this.updateUser=false;
+    this.getEquipos(false,undefined);
+    this.getPosiciones(false,undefined);
     this.limpiarControles();
+    this.createUser = true;
   }
 
   async llenarControles(id_user:string){
     await this.getPlayer(id_user);
+  }
+
+  async selectComboBox(obj){
+    await this.getEquipos(true,obj);
+    await this.getPosiciones(true,obj);
   }
 
   async getPlayer(id_user:string){
@@ -51,28 +73,69 @@ export class ListPage implements OnInit {
         this.name = res.data[0].nombre;
         this.equipo = res.data[0].equipo;
         this.numero = res.data[0].numero;
-        this.posicion = res.data[0].posicion
+        this.posicion = res.data[0].posicion;
+
+        this.selectComboBox(res.data[0]);
+
         console.log(res.data[0].nombre);
       }, err => {
         console.log('Error', err);
       }); 
   }
 
-  handleUpdateUser(id_user:string){
+  async handleUpdateUser(id_user:string){
+    await this.llenarControles(id_user);
     this.listUser = false;
     this.createUser = false;
-    this.updateUser=true;
     this.id_user=id_user;
-
-    this.llenarControles(id_user);
+    this.updateUser=true;
 
   }
 
   handleListUser(){
-    this.listUser = true;
+    this.limpiarControles();
     this.createUser = false;
     this.updateUser=false;
-    this.limpiarControles();
+    this.listUser = true;
+  }
+
+  async getEquipos(opcion:boolean,obj){
+    await this._playersService.handleGetDataEquipos()
+      .subscribe(res => {
+        this.equipos = res.data;
+        console.log(res);
+        console.log(this.equipos);
+        if(opcion){
+          for(var i=0;i<this.equipos.length;i++){
+            if(this.equipos[i].codigo==obj.equipo){
+              this.objEquipo=this.equipos[i];
+              console.log(this.objEquipo);
+            }
+          }
+        }
+      }, err => {
+        console.log('Error', err);
+      }); 
+  }
+
+  async getPosiciones(opcion:boolean,obj){
+    await this._playersService.handleGetDataPosiciones()
+      .subscribe(res => {
+        this.posiciones = res.data;
+        console.log(res);
+        console.log(this.posiciones);
+        if(opcion){
+          
+    for(var i=0;i<this.posiciones.length;i++){
+      if(this.posiciones[i].codigo==obj.posicion){
+        this.objPosicion=this.posiciones[i];
+        console.log(this.objPosicion);
+      }
+    }
+        }
+      }, err => {
+        console.log('Error', err);
+      }); 
   }
 
   async getPlayers(){
@@ -85,15 +148,46 @@ export class ListPage implements OnInit {
       }); 
   }
 
+  async showMessageOkCancel(title, message) {
+    const alert = await this.alertController.create({
+        header: title,
+        subHeader: message,
+        buttons: [{
+            text: 'Aceptar',
+            handler: () => {
+                this.choice=true;
+            }
+        }, {
+            text: 'Cancelar',
+            handler: () => {
+                this.choice=false;
+            }
+        }]
+    });
+
+    await alert.present();
+    await alert.onDidDismiss().then((data) => {
+        console.log(data);
+    })
+
+    console.log(this.choice);
+    return this.choice
+}
+
   async handleDeleteUser(id_user:string){
+    
+    await this.showMessageOkCancel("ELIMINAR","¿Está seguro que desea eliminar el registro?");
+
+    if(this.choice){
     await this._playersService.deleteJugador(id_user).subscribe(res => {
       if(res.status==true){
         this.presentAlert('ELIMINADO', 'Jugador eliminado con éxito.');
         this.getPlayers();
+        this.choice=false;
       }else{
         this.presentAlert('ERROR', 'Algo salió mal, intente de nuevo.');
       }
-    });
+    })}
   }
 
   async handleUpdateJugador(){
@@ -137,6 +231,8 @@ export class ListPage implements OnInit {
     this.equipo=undefined;
     this.numero=undefined;
     this.posicion=undefined;
+    this.objEquipo=undefined;
+    this.objPosicion=undefined;
   }
 
    async handleAddJugador(){
@@ -145,6 +241,7 @@ export class ListPage implements OnInit {
         this.presentAlert('GUARDADO', 'Jugador almacenado con éxito.');
         this.limpiarControles();
         this.getPlayers();
+        this.handleCreateUser();
       }else{
         this.presentAlert('ERROR', 'Algo salió mal, intente de nuevo.');
       }

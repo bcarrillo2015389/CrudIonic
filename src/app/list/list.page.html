@@ -10,7 +10,7 @@
       <ion-icon name="person-add"></ion-icon>
     </ion-buttons>
     <ion-buttons slot="end" (click)="handleListUser()" *ngIf="createUser">
-        <ion-icon name="list"></ion-icon>
+      <ion-icon name="list"></ion-icon>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -20,85 +20,141 @@
     <ion-item *ngFor="let player of players">
       {{player.nombre}}
       <div class="item-note" slot="end">
-          Codigo. {{player.codigo}}
+        Codigo. {{player.codigo}}
       </div>
       <div class="item-note" slot="end">
-          Equipo. {{player.equipo}}
+        Equipo. {{player.equipo}}
       </div>
       <div class="item-note" slot="end">
-          Posicion. {{player.posicion}}
-        </div>
+        Posicion. {{player.posicion}}
+      </div>
       <div class="item-note" slot="end">
         No. {{player.numero}}
       </div>
-      <ion-button color="primary" expand="full" (click)="handleDeleteUser(player.codigo)" slot="end">Borrar</ion-button>
-      <ion-button color="primary" expand="full" (click)="handleUpdateUser(player.codigo)" slot="end">Actualizar</ion-button>
+      <ion-button color="danger" expand="full" (click)="handleDeleteUser(player.codigo)" slot="end">Borrar</ion-button>
+      <ion-button color="warning" expand="full" (click)="handleUpdateUser(player.codigo)" slot="end">Actualizar
+      </ion-button>
     </ion-item>
   </ion-list>
 </ion-content>
 
 <ion-content *ngIf="createUser">
-    <ion-grid>
-        <ion-row>
-            <ion-col size="6">
-                <ion-item>
-                  <ion-input type="text" placeholder="Nombre" [(ngModel)]="name"></ion-input>
-                </ion-item>
-            </ion-col>
-            <ion-col size="6">
-                <ion-item>
-                    <ion-input type="text" placeholder="Equipo" [(ngModel)]="equipo"></ion-input>
-                  </ion-item>
-            </ion-col>
-            <ion-col size="6">
-                <ion-item>
-                    <ion-input type="text" placeholder="Numero" [(ngModel)]="numero"></ion-input>
-                  </ion-item>
-            </ion-col>
-            <ion-col size="6">
-                <ion-item>
-                    <ion-input type="text" placeholder="Posicion" [(ngModel)]="posicion"></ion-input>
-                  </ion-item>
-            </ion-col>
-            <ion-col size="6">
-                <ion-button color="primary" expand="full" type="submit" (click)="handleAddJugador()" color="tertiary">Guardar</ion-button>
-            </ion-col>
-            <ion-col size="6">
-                <ion-button color="primary" expand="full" type="submit" (click)="handleListUser()" color="tertiary">Cancelar</ion-button>
-            </ion-col>
-        </ion-row>
-      </ion-grid>
+  <ion-grid>
+    <ion-row>
+
+      <ion-col size="6">
+        <ion-item>
+          <ion-input clearInput type="text" placeholder="Nombre" [(ngModel)]="name"></ion-input>
+        </ion-item>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-item>
+          <ion-input clearInput type="text" placeholder="Numero" [(ngModel)]="numero"></ion-input>
+        </ion-item>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-list>
+          <ion-list-header>Seleccione el equipo</ion-list-header>
+
+          <ion-item>
+            <ion-label>Opcion</ion-label>
+            <ion-select ok-text="Aceptar" cancel-text="Cancelar" [compareWith]="compareWith" [(ngModel)]="objEquipo" (ionChange)="setEquipo()">
+              <ion-select-option [value]="equipo" *ngFor="let equipo of equipos">{{equipo.nombre}}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+
+      <ion-col size="6">
+          <ion-list>
+            <ion-list-header>Seleccione la posicion</ion-list-header>
+  
+            <ion-item>
+              <ion-label>Opcion</ion-label>
+              <ion-select ok-text="Aceptar" cancel-text="Cancelar" [compareWith]="compareWith" [(ngModel)]="objPosicion" (ionChange)="setPosicion()">
+                <ion-select-option [value]="posicion" *ngFor="let posicion of posiciones">{{posicion.nombre}}
+                </ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+
+      <ion-col size="6">
+        <ion-button color="primary" expand="full" type="submit" (click)="handleAddJugador()" color="tertiary">Guardar
+        </ion-button>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-button color="primary" expand="full" type="submit" (click)="handleListUser()" color="tertiary">Cancelar
+        </ion-button>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
 </ion-content>
 
 <ion-content *ngIf="updateUser">
-    <ion-grid>
-        <ion-row>
-            <ion-col size="6">
-                <ion-item>
-                  <ion-input type="text" [(ngModel)]="name"></ion-input>
-                </ion-item>
-            </ion-col>
-            <ion-col size="6">
-                <ion-item>
-                    <ion-input type="text" [(ngModel)]="equipo"></ion-input>
-                  </ion-item>
-            </ion-col>
-            <ion-col size="6">
-                <ion-item>
-                    <ion-input type="text" [(ngModel)]="numero"></ion-input>
-                  </ion-item>
-            </ion-col>
-            <ion-col size="6">
-                <ion-item>
-                    <ion-input type="text" [(ngModel)]="posicion"></ion-input>
-                  </ion-item>
-            </ion-col>
-            <ion-col size="6">
-                <ion-button color="primary" expand="full" type="submit" (click)="handleUpdateJugador()" color="tertiary">Actualizar</ion-button>
-            </ion-col>
-            <ion-col size="6">
-                <ion-button color="primary" expand="full" type="submit" (click)="handleListUser()" color="tertiary">Cancelar</ion-button>
-            </ion-col>
-        </ion-row>
-      </ion-grid>
+  <ion-grid>
+    <ion-row>
+
+      <ion-col size="6">
+        <ion-item>
+          <ion-label position="floating">Nombre</ion-label>
+          <ion-input clearInput type="text" [(ngModel)]="name"></ion-input>
+        </ion-item>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-item>
+          <ion-label position="floating">Numero</ion-label>
+          <ion-input clearInput type="text" [(ngModel)]="numero"></ion-input>
+        </ion-item>
+      </ion-col>
+      
+      <ion-col size="6">
+          <ion-list>
+            <ion-list-header>Seleccione el equipo</ion-list-header>
+  
+            <ion-item>
+              <ion-label>Opcion</ion-label>
+              <ion-select ok-text="Aceptar" cancel-text="Cancelar" [compareWith]="compareWith" [(ngModel)]="objEquipo" (ionChange)="setEquipo()">
+                <ion-select-option [value]="equipo" *ngFor="let equipo of equipos">{{equipo.nombre}}
+                </ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+  
+        <ion-col size="6">
+            <ion-list>
+              <ion-list-header>Seleccione la posicion</ion-list-header>
+    
+              <ion-item>
+                <ion-label>Opcion</ion-label>
+                <ion-select ok-text="Aceptar" cancel-text="Cancelar" [compareWith]="compareWith" [(ngModel)]="objPosicion" (ionChange)="setPosicion()">
+                  <ion-select-option [value]="posicion" *ngFor="let posicion of posiciones">{{posicion.nombre}}
+                  </ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+  
+      
+      <ion-col size="6">
+        <ion-button color="primary" expand="full" type="submit" (click)="handleUpdateJugador()" color="tertiary">
+          Actualizar
+        </ion-button>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-button color="primary" expand="full" type="submit" (click)="handleListUser()" color="tertiary">
+          Cancelar
+        </ion-button>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
 </ion-content>

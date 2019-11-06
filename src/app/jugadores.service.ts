@@ -43,6 +43,24 @@ export class JugadoresService {
       catchError(this.handleError));
   }
 
+  handleGetDataEquipos(): Observable<any> {
+
+    let apiUrl = `${Url + Apis.getEquipos } `;
+    console.log(apiUrl);
+    return this.http.get(apiUrl, httpOptions).pipe(
+      map(this.extractData),
+      catchError(this.handleError));
+  }
+
+  handleGetDataPosiciones(): Observable<any> {
+
+    let apiUrl = `${Url + Apis.getPosiciones } `;
+    console.log(apiUrl);
+    return this.http.get(apiUrl, httpOptions).pipe(
+      map(this.extractData),
+      catchError(this.handleError));
+  }
+
   handleGetDataPlayer(id_user:string): Observable<any> {
     let apiUrl = `${Url + Apis.getPlayer+id_user } `;
     console.log(apiUrl);

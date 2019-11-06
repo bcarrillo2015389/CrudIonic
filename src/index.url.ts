@@ -8,4 +8,6 @@ export const Apis = {
     deleteJugador:'/API/API_jugador.php?request=situacion',
     updateJugador:'/API/API_jugador.php?request=modificar',
     getPlayer: '/API/API_jugador.php?request=get&codigo=',
+    getEquipos: '/API/API_util.php?request=equipos',
+    getPosiciones: '/API/API_util.php?request=posiciones'
 };
