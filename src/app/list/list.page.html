@@ -20,10 +20,19 @@
     <ion-item *ngFor="let player of players">
       {{player.nombre}}
       <div class="item-note" slot="end">
+          Codigo. {{player.codigo}}
+      </div>
+      <div class="item-note" slot="end">
+          Equipo. {{player.equipo}}
+      </div>
+      <div class="item-note" slot="end">
+          Posicion. {{player.posicion}}
+        </div>
+      <div class="item-note" slot="end">
         No. {{player.numero}}
       </div>
-      <ion-button color="primary" expand="full" (click)="handleDeleteUser(player.codigo)">Borrar</ion-button>
-      <ion-button color="primary" expand="full" (click)="handleUpdateUser(player.codigo)">Actualizar</ion-button>
+      <ion-button color="primary" expand="full" (click)="handleDeleteUser(player.codigo)" slot="end">Borrar</ion-button>
+      <ion-button color="primary" expand="full" (click)="handleUpdateUser(player.codigo)" slot="end">Actualizar</ion-button>
     </ion-item>
   </ion-list>
 </ion-content>
@@ -32,13 +41,63 @@
     <ion-grid>
         <ion-row>
             <ion-col size="6">
-                <ion-input color="medium"  [(ngModel)]="name"></ion-input>
+                <ion-item>
+                  <ion-input type="text" placeholder="Nombre" [(ngModel)]="name"></ion-input>
+                </ion-item>
             </ion-col>
             <ion-col size="6">
-                <ion-input color="medium"  [(ngModel)]="numberPlayer"></ion-input>
+                <ion-item>
+                    <ion-input type="text" placeholder="Equipo" [(ngModel)]="equipo"></ion-input>
+                  </ion-item>
             </ion-col>
             <ion-col size="6">
-                <ion-button color="primary" expand="full" (click)="handleGetPositions()">Posicion</ion-button>
+                <ion-item>
+                    <ion-input type="text" placeholder="Numero" [(ngModel)]="numero"></ion-input>
+                  </ion-item>
+            </ion-col>
+            <ion-col size="6">
+                <ion-item>
+                    <ion-input type="text" placeholder="Posicion" [(ngModel)]="posicion"></ion-input>
+                  </ion-item>
+            </ion-col>
+            <ion-col size="6">
+                <ion-button color="primary" expand="full" type="submit" (click)="handleAddJugador()" color="tertiary">Guardar</ion-button>
+            </ion-col>
+            <ion-col size="6">
+                <ion-button color="primary" expand="full" type="submit" (click)="handleListUser()" color="tertiary">Cancelar</ion-button>
+            </ion-col>
+        </ion-row>
+      </ion-grid>
+</ion-content>
+
+<ion-content *ngIf="updateUser">
+    <ion-grid>
+        <ion-row>
+            <ion-col size="6">
+                <ion-item>
+                  <ion-input type="text" [(ngModel)]="name"></ion-input>
+                </ion-item>
+            </ion-col>
+            <ion-col size="6">
+                <ion-item>
+                    <ion-input type="text" [(ngModel)]="equipo"></ion-input>
+                  </ion-item>
+            </ion-col>
+            <ion-col size="6">
+                <ion-item>
+                    <ion-input type="text" [(ngModel)]="numero"></ion-input>
+                  </ion-item>
+            </ion-col>
+            <ion-col size="6">
+                <ion-item>
+                    <ion-input type="text" [(ngModel)]="posicion"></ion-input>
+                  </ion-item>
+            </ion-col>
+            <ion-col size="6">
+                <ion-button color="primary" expand="full" type="submit" (click)="handleUpdateJugador()" color="tertiary">Actualizar</ion-button>
+            </ion-col>
+            <ion-col size="6">
+                <ion-button color="primary" expand="full" type="submit" (click)="handleListUser()" color="tertiary">Cancelar</ion-button>
             </ion-col>
         </ion-row>
       </ion-grid>

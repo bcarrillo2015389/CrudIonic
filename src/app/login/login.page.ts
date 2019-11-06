@@ -16,8 +16,8 @@ import { Storage } from '@ionic/storage';
 export class LoginPage implements OnInit {
 
   // Values Login
-  user:string = 'Usuario';
-  pass:string = 'ABCDE';
+  user:string;
+  pass:string;
 
   constructor(private _sericeLogin:LoginService, public alertController: AlertController, private storage: Storage, private router: Router) { }
 

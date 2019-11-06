@@ -12,12 +12,21 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['list.page.scss']
 })
 export class ListPage implements OnInit {
-
   players;
+  jugador;
+  name:string;
+  equipo:string;
+  numero:string;
+  posicion:string;
+
+
+  id_user:string;
+
 
   // Validation View
   listUser:boolean = true;
   createUser:boolean = false;
+  updateUser:boolean = false;
 
   constructor(private _playersService: JugadoresService, public alertController: AlertController) {}
 
@@ -28,11 +37,42 @@ export class ListPage implements OnInit {
   handleCreateUser(){
     this.listUser = false;
     this.createUser = true;
+    this.updateUser=false;
+    this.limpiarControles();
+  }
+
+  async llenarControles(id_user:string){
+    await this.getPlayer(id_user);
+  }
+
+  async getPlayer(id_user:string){
+    await this._playersService.handleGetDataPlayer(id_user)
+      .subscribe(res => {
+        this.name = res.data[0].nombre;
+        this.equipo = res.data[0].equipo;
+        this.numero = res.data[0].numero;
+        this.posicion = res.data[0].posicion
+        console.log(res.data[0].nombre);
+      }, err => {
+        console.log('Error', err);
+      }); 
+  }
+
+  handleUpdateUser(id_user:string){
+    this.listUser = false;
+    this.createUser = false;
+    this.updateUser=true;
+    this.id_user=id_user;
+
+    this.llenarControles(id_user);
+
   }
 
   handleListUser(){
     this.listUser = true;
     this.createUser = false;
+    this.updateUser=false;
+    this.limpiarControles();
   }
 
   async getPlayers(){
@@ -45,12 +85,30 @@ export class ListPage implements OnInit {
       }); 
   }
 
-  handleDeleteUser(id_user:string){
-    console.log('usuario', id_user);
+  async handleDeleteUser(id_user:string){
+    await this._playersService.deleteJugador(id_user).subscribe(res => {
+      if(res.status==true){
+        this.presentAlert('ELIMINADO', 'Jugador eliminado con éxito.');
+        this.getPlayers();
+      }else{
+        this.presentAlert('ERROR', 'Algo salió mal, intente de nuevo.');
+      }
+    });
   }
 
-  handleUpdateUser(id_user:string){
-    console.log('usuario', id_user);
+  async handleUpdateJugador(){
+    await this._playersService.updateJugador(this.id_user, this.name,this.equipo,this.numero,this.posicion).subscribe(res => {
+      if(res.status==true){
+        this.presentAlert('ACTUALIZADO', 'Jugador actualizado con éxito.');
+        this.getPlayers();
+        this.id_user=undefined;
+        this.limpiarControles();
+        this.jugador=undefined;
+        this.handleListUser();
+      }else{
+        this.presentAlert('ERROR', 'Algo salió mal, intente de nuevo.');
+      }
+    });
   }
 
   async handleGetPositions(id_user:string){
@@ -62,6 +120,35 @@ export class ListPage implements OnInit {
       }, err => {
         console.log('Error', err);
       }); 
+  }
+
+  async presentAlert(title:string, message:string) {
+    const alert = await this.alertController.create({
+      header: title,
+      message: message,
+      buttons: ['Aceptar']
+    });
+
+    await alert.present();
+  }
+
+  limpiarControles(){
+    this.name=undefined;
+    this.equipo=undefined;
+    this.numero=undefined;
+    this.posicion=undefined;
+  }
+
+   async handleAddJugador(){
+    await this._playersService.postJugador(this.name,this.equipo,this.numero,this.posicion).subscribe(res => {
+      if(res.status==true){
+        this.presentAlert('GUARDADO', 'Jugador almacenado con éxito.');
+        this.limpiarControles();
+        this.getPlayers();
+      }else{
+        this.presentAlert('ERROR', 'Algo salió mal, intente de nuevo.');
+      }
+    });
   }
 
   async presentAlertCheckbox(data) {

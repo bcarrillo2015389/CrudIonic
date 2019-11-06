@@ -18,12 +18,12 @@ import { Router } from '@angular/router';
 export class AppComponent {
   public appPages = [
     {
-      title: 'Home',
+      title: 'Principal',
       url: '/home',
       icon: 'home'
     },
     {
-      title: 'List',
+      title: 'Opciones',
       url: '/list',
       icon: 'list'
     }
