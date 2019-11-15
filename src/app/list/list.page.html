@@ -36,6 +36,11 @@
       </ion-button>
     </ion-item>
   </ion-list>
+  <footer>
+      <a id="footerImage" href="https://www.facebook.com/HappyMondays.com.gt/" target="_blank"><img src="/assets/footerFacebook.png" alt="Pie de pagina" /></a>
+      <a href="https://www.linkedin.com/company/happymondays.com.gt" target="_blank"><img src="/assets/footerLinkedIn.png" alt="Pie de pagina" /></a>
+      <a href="https://www.instagram.com/happymondays.com.gt/" target="_blank"><img src="/assets/footerInstagram.png" alt="Pie de pagina" /></a>
+    </footer>
 </ion-content>
 
 <ion-content *ngIf="createUser">
@@ -44,13 +49,13 @@
 
       <ion-col size="6">
         <ion-item>
-          <ion-input clearInput type="text" placeholder="Nombre" [(ngModel)]="name"></ion-input>
+          <ion-input class="createInput" clearInput  type="text" placeholder="Nombre" [(ngModel)]="name"></ion-input>
         </ion-item>
       </ion-col>
 
       <ion-col size="6">
         <ion-item>
-          <ion-input clearInput type="text" placeholder="Numero" [(ngModel)]="numero"></ion-input>
+          <ion-input class="createInput" clearInput type="text" placeholder="Numero" [(ngModel)]="numero"></ion-input>
         </ion-item>
       </ion-col>
 
@@ -83,17 +88,22 @@
         </ion-col>
 
       <ion-col size="6">
-        <ion-button color="primary" expand="full" type="submit" (click)="handleAddJugador()" color="tertiary">Guardar
+        <ion-button color="danger" expand="full" type="submit" (click)="handleAddJugador()">Guardar
         </ion-button>
       </ion-col>
 
       <ion-col size="6">
-        <ion-button color="primary" expand="full" type="submit" (click)="handleListUser()" color="tertiary">Cancelar
+        <ion-button color="warning" expand="full" type="submit" (click)="handleListUser()">Cancelar
         </ion-button>
       </ion-col>
 
     </ion-row>
   </ion-grid>
+  <footer>
+      <a id="footerImage" href="https://www.facebook.com/HappyMondays.com.gt/" target="_blank"><img src="/assets/footerFacebook.png" alt="Pie de pagina" /></a>
+      <a href="https://www.linkedin.com/company/happymondays.com.gt" target="_blank"><img src="/assets/footerLinkedIn.png" alt="Pie de pagina" /></a>
+      <a href="https://www.instagram.com/happymondays.com.gt/" target="_blank"><img src="/assets/footerInstagram.png" alt="Pie de pagina" /></a>
+    </footer>
 </ion-content>
 
 <ion-content *ngIf="updateUser">
@@ -103,14 +113,14 @@
       <ion-col size="6">
         <ion-item>
           <ion-label position="floating">Nombre</ion-label>
-          <ion-input clearInput type="text" [(ngModel)]="name"></ion-input>
+          <ion-input class="updateInput" clearInput type="text" [(ngModel)]="name"></ion-input>
         </ion-item>
       </ion-col>
 
       <ion-col size="6">
         <ion-item>
           <ion-label position="floating">Numero</ion-label>
-          <ion-input clearInput type="text" [(ngModel)]="numero"></ion-input>
+          <ion-input class="updateInput" clearInput  type="text" [(ngModel)]="numero"></ion-input>
         </ion-item>
       </ion-col>
       
@@ -144,17 +154,22 @@
   
       
       <ion-col size="6">
-        <ion-button color="primary" expand="full" type="submit" (click)="handleUpdateJugador()" color="tertiary">
+        <ion-button color="danger" expand="full" type="submit" (click)="handleUpdateJugador()">
           Actualizar
         </ion-button>
       </ion-col>
 
       <ion-col size="6">
-        <ion-button color="primary" expand="full" type="submit" (click)="handleListUser()" color="tertiary">
+        <ion-button color="warning" expand="full" type="submit" (click)="handleListUser()">
           Cancelar
         </ion-button>
       </ion-col>
 
     </ion-row>
   </ion-grid>
+  <footer>
+      <a id="footerImage" href="https://www.facebook.com/HappyMondays.com.gt/" target="_blank"><img src="/assets/footerFacebook.png" alt="Pie de pagina" /></a>
+      <a href="https://www.linkedin.com/company/happymondays.com.gt" target="_blank"><img src="/assets/footerLinkedIn.png" alt="Pie de pagina" /></a>
+      <a href="https://www.instagram.com/happymondays.com.gt/" target="_blank"><img src="/assets/footerInstagram.png" alt="Pie de pagina" /></a>
+    </footer>
 </ion-content>

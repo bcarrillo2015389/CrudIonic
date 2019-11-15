@@ -1,23 +1,66 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Iniciar sesion</ion-title>
+  <ion-toolbar color="danger">
+    <ion-title>Iniciar sesión</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <br><br><br>
   <ion-grid>
     <ion-row>
-        <ion-col size="6">
-            <ion-input color="medium" placeholder="Usuario"  [(ngModel)]="user"></ion-input>
-        </ion-col>
-        <ion-col size="6">
-            <ion-input color="medium" placeholder="Contraseña" [(ngModel)]="pass"></ion-input>
-        </ion-col>
-        <ion-col>
-            <ion-button color="primary" expand="full" (click)="handleLoginUser()">Ingresar</ion-button>
-        </ion-col>
+      <ion-col size="12">
+        <div align-items="center">
+          <img id="logoImage" src="/assets/logo.png" alt="Logo" />
+        </div>
+      </ion-col>
     </ion-row>
+
+    <br><br>
+
+    <ion-row>
+      <ion-col size="12">
+        <ion-input placeholder="Usuario" expand="full" [(ngModel)]="user"></ion-input>
+      </ion-col>
+      <br>
+
+
+      <ion-col size="12">
+        <ion-input type="password" expand="full" placeholder="Password" [(ngModel)]="pass"></ion-input>
+      </ion-col>
+
+      <br>
+
+      <ion-col>
+        <ion-button color="secondary" expand="full" (click)="handleLoginUser()">Continuar</ion-button>
+      </ion-col>
+    </ion-row>
+
   </ion-grid>
+  <ion-footer>
+    <ion-toolbar id="footer" color="dark">
+      <ion-grid>
+        <ion-row>
+          <ion-col id="firstImage">
+              <a href="https://www.facebook.com/HappyMondays.com.gt/" target="_blank">
+                <ion-icon name="logo-facebook" style="font-size: 35px;color:white"></ion-icon>
+              </a>
+          </ion-col>
+
+          <ion-col>
+              <a href="https://www.linkedin.com/company/happymondays.com.gt" target="_blank">
+                <ion-icon name="logo-linkedin" style="font-size: 35px;color:white"></ion-icon>
+              </a>
+          </ion-col>
+
+          <ion-col id="lastImage">
+              <a href="https://www.instagram.com/happymondays.com.gt/" target="_blank">
+                <ion-icon name="logo-instagram" style="font-size: 35px;color: white;"></ion-icon>
+              </a>
+          </ion-col>
+          
+        </ion-row>
+      </ion-grid>
+    </ion-toolbar>
+  </ion-footer>
 
 </ion-content>

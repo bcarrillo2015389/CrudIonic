@@ -1,31 +1,41 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import { Platform } from '@ionic/angular';
+import { Platform, MenuController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-
+import { LoadingController } from '@ionic/angular';
 // Plugins
 import { Storage } from '@ionic/storage';
 
 import { Router } from '@angular/router';
-
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  cargando:any;
+
   public appPages = [
     {
-      title: 'Principal',
+      title: 'Inicio',
       url: '/home',
       icon: 'home'
     },
     {
-      title: 'Opciones',
-      url: '/list',
-      icon: 'list'
+      title: 'Mi perfil',
+      url: '/perfil',
+      icon: 'person'
+    },{
+      title:'Ver mi CV',
+      url:'/cv',
+      icon:'document'
+    },
+    {
+      title:'Cerrar sesión',
+      url: '/login',
+      icon: 'lock'
     }
   ];
 
@@ -34,10 +44,16 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private storage: Storage,
-    private router: Router
+    private router: Router,
+    private menuCtrl: MenuController,
+    private loading:LoadingController
   ) {
     this.initializeApp();
   }
+
+  ngOnInit(){
+    
+  };
 
   initializeApp() {
     this.platform.ready().then(() => {
@@ -49,6 +65,26 @@ export class AppComponent {
     });
   }
 
+  async redireccionar(accion:string){
+
+    if(accion=='/login'){
+      
+      await this.presentLoading("Cerrando sesión");
+      await this.storage.clear();
+      await this.cargando.dismiss();
+      this.menuCtrl.enable(false);
+      this.router.navigateByUrl('/login');
+
+    }else if(accion=='/'){
+      this.router.navigateByUrl('/');
+    }else if(accion=='/list'){
+      this.router.navigateByUrl('/list');
+    }else if(accion=='/cv'){
+      this.router.navigateByUrl('/cv');
+    }
+
+  }
+
   validationUser(){
     this.storage.get('user').then((user) => {
       if (user) {
@@ -56,9 +92,16 @@ export class AppComponent {
         this.router.navigateByUrl('/');
       }else{
         this.router.navigateByUrl('/login');
+        this.menuCtrl.enable(false);
       }
 
     });
   }
 
+  async presentLoading(mensaje:string) {
+    this.cargando = await this.loading.create({
+    message: mensaje
+  });
+  return this.cargando.present();
+  }
 }

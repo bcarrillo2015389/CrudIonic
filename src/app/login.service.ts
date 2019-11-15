@@ -15,7 +15,6 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class LoginService {
-
   constructor(public http: HttpClient) { }
 
   private handleError(error: HttpErrorResponse) {
@@ -41,7 +40,5 @@ export class LoginService {
     return this.http.get(apiUrl, httpOptions).pipe(
       map(this.extractData),
       catchError(this.handleError));
-  }
-
-
+    }
 }
