@@ -51,6 +51,11 @@ ion-footer{
   padding-top:auto;
 }
 
+#divFooter{
+  overflow: hidden;
+  margin:auto;
+}
+
 //Iphone 5
 @media all  and (min-width:320px) and (max-width:359px){
   ion-footer{
@@ -88,9 +93,9 @@ ion-footer{
 }
 
 //Pixel XL
-@media all  and (min-width:411px) and (max-width:567px) and (min-height:823px){
+@media all  and (min-width:411px) and (max-width:567px) and (height:823px){
   ion-footer{
-      padding-top:40%
+      padding-top:40%;
   }
 }
 

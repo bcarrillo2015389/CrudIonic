@@ -1,9 +1,180 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>perfil</ion-title>
+  <ion-toolbar color="danger">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Mi Perfil</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-content *ngIf="usuarioValidado">
 
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <div>
+            <img id="logoImage" src="/assets/logo.png" alt="Logo" />
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  
+    <ion-card>
+      <ion-card-header color="dark">
+        <ion-card-title style="color:white;text-align: center;">Información General</ion-card-title>
+      </ion-card-header>
+  
+      <ion-card-content>
+        <ion-list>
+          <ion-item>
+            Nombre: {{nombre}}
+          </ion-item>
+  
+          <ion-item>
+            E-mail: {{mail}}
+          </ion-item>
+  
+          <ion-item>
+            Teléfono: {{telefono}}
+          </ion-item>
+  
+          <br>
+          <div align-items="center">
+            <ion-img id="perfilImage" [src]="foto"></ion-img>
+          </div>
+  
+        </ion-list>
+  
+        <ion-grid>
+          <ion-row>
+            <ion-col size="8">
+              <ion-button color="medium" expand="full" type="submit" (click)="actualizar()">Actualizar perfil
+              </ion-button>
+            </ion-col>
+  
+            <ion-col size="4">
+              <ion-button color="secondary" expand="full" type="submit" (click)="ajustes()">Ajustes</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  
+    <ion-footer>
+      <ion-toolbar id="footer" color="dark">
+        <ion-grid>
+          <ion-row>
+            <ion-col id="firstImage">
+              <a href="https://www.facebook.com/HappyMondays.com.gt/" target="_blank">
+                <ion-icon name="logo-facebook" style="font-size: 35px;color:white"></ion-icon>
+              </a>
+            </ion-col>
+  
+            <ion-col>
+              <a href="https://www.linkedin.com/company/happymondays.com.gt" target="_blank">
+                <ion-icon name="logo-linkedin" style="font-size: 35px;color:white"></ion-icon>
+              </a>
+            </ion-col>
+  
+            <ion-col id="lastImage">
+              <a href="https://www.instagram.com/happymondays.com.gt/" target="_blank">
+                <ion-icon name="logo-instagram" style="font-size: 35px;color: white;"></ion-icon>
+              </a>
+            </ion-col>
+  
+          </ion-row>
+        </ion-grid>
+      </ion-toolbar>
+    </ion-footer>
+  </ion-content>
+  
+  <ion-content *ngIf="actualizado">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <div>
+            <img id="logoImage" src="/assets/logo.png" alt="Logo" />
+          </div>
+        </ion-col>
+  
+        <ion-col size="12">
+          <ion-button class="ion-float-right" color="danger">Contraseña</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  
+    <ion-card>
+      <ion-card-header color="dark">
+        <ion-card-title style="color:white;text-align: center;">Actualizar Perfil</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+  
+            <ion-col size="12">
+              <ion-item>
+                <ion-label position="floating">Nombre</ion-label>
+                <ion-input class="updateInput" clearInput type="text" [(ngModel)]="nombre"></ion-input>
+              </ion-item>
+            </ion-col>
+  
+            <ion-col size="12">
+              <ion-item>
+                <ion-label position="floating">Mail</ion-label>
+                <ion-input class="updateInput" clearInput type="text" [(ngModel)]="mail"></ion-input>
+              </ion-item>
+            </ion-col>
+  
+            <ion-col size="12">
+              <ion-item>
+                <ion-label position="floating">Teléfono</ion-label>
+                <ion-input class="updateInput" clearInput type="text" [(ngModel)]="telefono"></ion-input>
+              </ion-item>
+            </ion-col>
+  
+            <ion-col size="6">
+              <ion-button color="medium" expand="full" type="submit" (click)="guardarActualizacion()">
+                Actualizar
+              </ion-button>
+            </ion-col>
+
+            <ion-col size="6">
+              <ion-button color="secondary" expand="full" type="submit" (click)="regresarPerfil()">Cancelar</ion-button>
+            </ion-col>
+  
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+  
+    </ion-card>
+  
+  
+    <ion-footer>
+      <ion-toolbar id="footer" color="dark">
+        <ion-grid>
+          <ion-row>
+            <ion-col id="firstImage">
+              <a href="https://www.facebook.com/HappyMondays.com.gt/" target="_blank">
+                <ion-icon name="logo-facebook" style="font-size: 35px;color:white"></ion-icon>
+              </a>
+            </ion-col>
+  
+            <ion-col>
+              <a href="https://www.linkedin.com/company/happymondays.com.gt" target="_blank">
+                <ion-icon name="logo-linkedin" style="font-size: 35px;color:white"></ion-icon>
+              </a>
+            </ion-col>
+  
+            <ion-col id="lastImage">
+              <a href="https://www.instagram.com/happymondays.com.gt/" target="_blank">
+                <ion-icon name="logo-instagram" style="font-size: 35px;color: white;"></ion-icon>
+              </a>
+            </ion-col>
+  
+          </ion-row>
+        </ion-grid>
+      </ion-toolbar>
+    </ion-footer>
+  </ion-content>
 </ion-content>

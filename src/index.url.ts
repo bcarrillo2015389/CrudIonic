@@ -9,5 +9,10 @@ export const Apis = {
     updateJugador:'/API/API_jugador.php?request=modificar',
     getPlayer: '/API/API_jugador.php?request=get&codigo=',
     getEquipos: '/API/API_util.php?request=equipos',
-    getPosiciones: '/API/API_util.php?request=posiciones'
+    getPosiciones: '/API/API_util.php?request=posiciones',
+    getPerfil:'/API/API_ajustes.php?request=get_perfil',
+    getAjustes: '/API/API_ajustes.php?request=get_ajustes&usuario=',
+    getPassword: '/API/API_ajustes.php?request=get_pasword&usuario=',
+    getFoto: '/API/API_ajustes.php?request=get_foto&usuario=',
+    putPerfil:'/API/API_ajustes.php?request=set_perfil'
 };

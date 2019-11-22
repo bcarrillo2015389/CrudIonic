@@ -16,7 +16,9 @@ const routes: Routes = [
     loadChildren: () => import('./list/list.module').then(m => m.ListPageModule)
   },
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },  { path: 'cv', loadChildren: './cv/cv.module#CvPageModule' },
-  { path: 'perfil', loadChildren: './perfil/perfil.module#PerfilPageModule' }
+  { path: 'perfil', loadChildren: './perfil/perfil.module#PerfilPageModule' },
+  { path: 'modificar-cv', loadChildren: './modificar-cv/modificar-cv.module#ModificarCvPageModule' },
+  { path: 'ofertas-laborales', loadChildren: './ofertas-laborales/ofertas-laborales.module#OfertasLaboralesPageModule' }
 
 ];
 

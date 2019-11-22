@@ -75,12 +75,14 @@ export class AppComponent implements OnInit {
       this.menuCtrl.enable(false);
       this.router.navigateByUrl('/login');
 
-    }else if(accion=='/'){
-      this.router.navigateByUrl('/');
+    }else if(accion=='/home'){
+      this.router.navigateByUrl('/home');
     }else if(accion=='/list'){
       this.router.navigateByUrl('/list');
     }else if(accion=='/cv'){
       this.router.navigateByUrl('/cv');
+    }else if(accion=='/perfil'){
+      this.router.navigateByUrl('/perfil');
     }
 
   }

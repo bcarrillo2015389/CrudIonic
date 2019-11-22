@@ -29,38 +29,37 @@
         Conforme vayamos conociéndote, te recomendaremos ofertas de trabajo que se adapten a tu perfil profesional.</p>
       <br>
       <h5 class="tituloVerde" style="text-align: center;">ACCIONES RÁPIDAS</h5>
-      <ion-button color="secondary" expand="full">Mi CV</ion-button>
-      <ion-button color="medium" expand="full">Ofertas laborales</ion-button>
+      <ion-button color="secondary" expand="full" (click)="cambiarModificarCV()">Actualizar mi CV</ion-button>
+      <ion-button color="medium" expand="full" (click)="cambiarOfertasLaborales()">Ofertas laborales</ion-button>
 
 
     </ion-card-content>
   </ion-card>
 
+    <ion-footer>
+      <ion-toolbar id="footer" color="dark">
+        <ion-grid>
+          <ion-row>
+            <ion-col id="firstImage">
+              <a href="https://www.facebook.com/HappyMondays.com.gt/" target="_blank">
+                <ion-icon name="logo-facebook" style="font-size: 35px;color:white"></ion-icon>
+              </a>
+            </ion-col>
 
-  <ion-footer>
-    <ion-toolbar id="footer" color="dark">
-      <ion-grid>
-        <ion-row>
-          <ion-col id="firstImage">
-            <a href="https://www.facebook.com/HappyMondays.com.gt/" target="_blank">
-              <ion-icon name="logo-facebook" style="font-size: 35px;color:white"></ion-icon>
-            </a>
-          </ion-col>
+            <ion-col>
+              <a href="https://www.linkedin.com/company/happymondays.com.gt" target="_blank">
+                <ion-icon name="logo-linkedin" style="font-size: 35px;color:white"></ion-icon>
+              </a>
+            </ion-col>
 
-          <ion-col>
-            <a href="https://www.linkedin.com/company/happymondays.com.gt" target="_blank">
-              <ion-icon name="logo-linkedin" style="font-size: 35px;color:white"></ion-icon>
-            </a>
-          </ion-col>
+            <ion-col id="lastImage">
+              <a href="https://www.instagram.com/happymondays.com.gt/" target="_blank">
+                <ion-icon name="logo-instagram" style="font-size: 35px;color: white;"></ion-icon>
+              </a>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-toolbar>
+    </ion-footer>
 
-          <ion-col id="lastImage">
-            <a href="https://www.instagram.com/happymondays.com.gt/" target="_blank">
-              <ion-icon name="logo-instagram" style="font-size: 35px;color: white;"></ion-icon>
-            </a>
-          </ion-col>
-
-        </ion-row>
-      </ion-grid>
-    </ion-toolbar>
-  </ion-footer>
 </ion-content>

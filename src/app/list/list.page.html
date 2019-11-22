@@ -37,10 +37,13 @@
     </ion-item>
   </ion-list>
   <footer>
-      <a id="footerImage" href="https://www.facebook.com/HappyMondays.com.gt/" target="_blank"><img src="/assets/footerFacebook.png" alt="Pie de pagina" /></a>
-      <a href="https://www.linkedin.com/company/happymondays.com.gt" target="_blank"><img src="/assets/footerLinkedIn.png" alt="Pie de pagina" /></a>
-      <a href="https://www.instagram.com/happymondays.com.gt/" target="_blank"><img src="/assets/footerInstagram.png" alt="Pie de pagina" /></a>
-    </footer>
+    <a id="footerImage" href="https://www.facebook.com/HappyMondays.com.gt/" target="_blank"><img
+        src="/assets/footerFacebook.png" alt="Pie de pagina" /></a>
+    <a href="https://www.linkedin.com/company/happymondays.com.gt" target="_blank"><img src="/assets/footerLinkedIn.png"
+        alt="Pie de pagina" /></a>
+    <a href="https://www.instagram.com/happymondays.com.gt/" target="_blank"><img src="/assets/footerInstagram.png"
+        alt="Pie de pagina" /></a>
+  </footer>
 </ion-content>
 
 <ion-content *ngIf="createUser">
@@ -49,7 +52,7 @@
 
       <ion-col size="6">
         <ion-item>
-          <ion-input class="createInput" clearInput  type="text" placeholder="Nombre" [(ngModel)]="name"></ion-input>
+          <ion-input class="createInput" clearInput type="text" placeholder="Nombre" [(ngModel)]="name"></ion-input>
         </ion-item>
       </ion-col>
 
@@ -65,7 +68,8 @@
 
           <ion-item>
             <ion-label>Opcion</ion-label>
-            <ion-select ok-text="Aceptar" cancel-text="Cancelar" [compareWith]="compareWith" [(ngModel)]="objEquipo" (ionChange)="setEquipo()">
+            <ion-select ok-text="Aceptar" cancel-text="Cancelar" [compareWith]="compareWith" [(ngModel)]="objEquipo"
+              (ionChange)="setEquipo()">
               <ion-select-option [value]="equipo" *ngFor="let equipo of equipos">{{equipo.nombre}}
               </ion-select-option>
             </ion-select>
@@ -74,18 +78,19 @@
       </ion-col>
 
       <ion-col size="6">
-          <ion-list>
-            <ion-list-header>Seleccione la posicion</ion-list-header>
-  
-            <ion-item>
-              <ion-label>Opcion</ion-label>
-              <ion-select ok-text="Aceptar" cancel-text="Cancelar" [compareWith]="compareWith" [(ngModel)]="objPosicion" (ionChange)="setPosicion()">
-                <ion-select-option [value]="posicion" *ngFor="let posicion of posiciones">{{posicion.nombre}}
-                </ion-select-option>
-              </ion-select>
-            </ion-item>
-          </ion-list>
-        </ion-col>
+        <ion-list>
+          <ion-list-header>Seleccione la posicion</ion-list-header>
+
+          <ion-item>
+            <ion-label>Opcion</ion-label>
+            <ion-select ok-text="Aceptar" cancel-text="Cancelar" [compareWith]="compareWith" [(ngModel)]="objPosicion"
+              (ionChange)="setPosicion()">
+              <ion-select-option [value]="posicion" *ngFor="let posicion of posiciones">{{posicion.nombre}}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </ion-col>
 
       <ion-col size="6">
         <ion-button color="danger" expand="full" type="submit" (click)="handleAddJugador()">Guardar
@@ -100,10 +105,13 @@
     </ion-row>
   </ion-grid>
   <footer>
-      <a id="footerImage" href="https://www.facebook.com/HappyMondays.com.gt/" target="_blank"><img src="/assets/footerFacebook.png" alt="Pie de pagina" /></a>
-      <a href="https://www.linkedin.com/company/happymondays.com.gt" target="_blank"><img src="/assets/footerLinkedIn.png" alt="Pie de pagina" /></a>
-      <a href="https://www.instagram.com/happymondays.com.gt/" target="_blank"><img src="/assets/footerInstagram.png" alt="Pie de pagina" /></a>
-    </footer>
+    <a id="footerImage" href="https://www.facebook.com/HappyMondays.com.gt/" target="_blank"><img
+        src="/assets/footerFacebook.png" alt="Pie de pagina" /></a>
+    <a href="https://www.linkedin.com/company/happymondays.com.gt" target="_blank"><img src="/assets/footerLinkedIn.png"
+        alt="Pie de pagina" /></a>
+    <a href="https://www.instagram.com/happymondays.com.gt/" target="_blank"><img src="/assets/footerInstagram.png"
+        alt="Pie de pagina" /></a>
+  </footer>
 </ion-content>
 
 <ion-content *ngIf="updateUser">
@@ -120,39 +128,41 @@
       <ion-col size="6">
         <ion-item>
           <ion-label position="floating">Numero</ion-label>
-          <ion-input class="updateInput" clearInput  type="text" [(ngModel)]="numero"></ion-input>
+          <ion-input class="updateInput" clearInput type="text" [(ngModel)]="numero"></ion-input>
         </ion-item>
       </ion-col>
-      
+
       <ion-col size="6">
-          <ion-list>
-            <ion-list-header>Seleccione el equipo</ion-list-header>
-  
-            <ion-item>
-              <ion-label>Opcion</ion-label>
-              <ion-select ok-text="Aceptar" cancel-text="Cancelar" [compareWith]="compareWith" [(ngModel)]="objEquipo" (ionChange)="setEquipo()">
-                <ion-select-option [value]="equipo" *ngFor="let equipo of equipos">{{equipo.nombre}}
-                </ion-select-option>
-              </ion-select>
-            </ion-item>
-          </ion-list>
-        </ion-col>
-  
-        <ion-col size="6">
-            <ion-list>
-              <ion-list-header>Seleccione la posicion</ion-list-header>
-    
-              <ion-item>
-                <ion-label>Opcion</ion-label>
-                <ion-select ok-text="Aceptar" cancel-text="Cancelar" [compareWith]="compareWith" [(ngModel)]="objPosicion" (ionChange)="setPosicion()">
-                  <ion-select-option [value]="posicion" *ngFor="let posicion of posiciones">{{posicion.nombre}}
-                  </ion-select-option>
-                </ion-select>
-              </ion-item>
-            </ion-list>
-          </ion-col>
-  
-      
+        <ion-list>
+          <ion-list-header>Seleccione el equipo</ion-list-header>
+
+          <ion-item>
+            <ion-label>Opcion</ion-label>
+            <ion-select ok-text="Aceptar" cancel-text="Cancelar" [compareWith]="compareWith" [(ngModel)]="objEquipo"
+              (ionChange)="setEquipo()">
+              <ion-select-option [value]="equipo" *ngFor="let equipo of equipos">{{equipo.nombre}}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-list>
+          <ion-list-header>Seleccione la posicion</ion-list-header>
+
+          <ion-item>
+            <ion-label>Opcion</ion-label>
+            <ion-select ok-text="Aceptar" cancel-text="Cancelar" [compareWith]="compareWith" [(ngModel)]="objPosicion"
+              (ionChange)="setPosicion()">
+              <ion-select-option [value]="posicion" *ngFor="let posicion of posiciones">{{posicion.nombre}}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+
+
       <ion-col size="6">
         <ion-button color="danger" expand="full" type="submit" (click)="handleUpdateJugador()">
           Actualizar
@@ -168,8 +178,11 @@
     </ion-row>
   </ion-grid>
   <footer>
-      <a id="footerImage" href="https://www.facebook.com/HappyMondays.com.gt/" target="_blank"><img src="/assets/footerFacebook.png" alt="Pie de pagina" /></a>
-      <a href="https://www.linkedin.com/company/happymondays.com.gt" target="_blank"><img src="/assets/footerLinkedIn.png" alt="Pie de pagina" /></a>
-      <a href="https://www.instagram.com/happymondays.com.gt/" target="_blank"><img src="/assets/footerInstagram.png" alt="Pie de pagina" /></a>
-    </footer>
+    <a id="footerImage" href="https://www.facebook.com/HappyMondays.com.gt/" target="_blank"><img
+        src="/assets/footerFacebook.png" alt="Pie de pagina" /></a>
+    <a href="https://www.linkedin.com/company/happymondays.com.gt" target="_blank"><img src="/assets/footerLinkedIn.png"
+        alt="Pie de pagina" /></a>
+    <a href="https://www.instagram.com/happymondays.com.gt/" target="_blank"><img src="/assets/footerInstagram.png"
+        alt="Pie de pagina" /></a>
+  </footer>
 </ion-content>
